@@ -5,7 +5,7 @@
 #include "csv.hpp"
 
 using namespace std;
-// jon s
+
 void WaterDataset::loadData(const string& filename)
 {
     csv::CSVReader reader(filename);

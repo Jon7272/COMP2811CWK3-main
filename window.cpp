@@ -9,7 +9,7 @@
 static const int MIN_WIDTH = 620;
 
 
-QuakeWindow::QuakeWindow(): QMainWindow(), statsDialog(nullptr)
+WaterWindow::WaterWindow(): QMainWindow(), statsDialog(nullptr)
 {
   createMainWidget();
   createFileSelectors();
@@ -24,7 +24,7 @@ QuakeWindow::QuakeWindow(): QMainWindow(), statsDialog(nullptr)
 }
 
 
-void QuakeWindow::createMainWidget()
+void WaterWindow::createMainWidget()
 {
   table = new QTableView();
   table->setModel(&model);
@@ -36,7 +36,7 @@ void QuakeWindow::createMainWidget()
 }
 
 
-void QuakeWindow::createFileSelectors()
+void WaterWindow::createFileSelectors()
 {
   QStringList significanceOptions;
   significanceOptions << "significant" << "4.5" << "2.5" << "1.0" << "all";
@@ -50,7 +50,7 @@ void QuakeWindow::createFileSelectors()
 }
 
 
-void QuakeWindow::createButtons()
+void WaterWindow::createButtons()
 {
   loadButton = new QPushButton("Load");
   statsButton = new QPushButton("Stats");
@@ -60,7 +60,7 @@ void QuakeWindow::createButtons()
 }
 
 
-void QuakeWindow::createToolBar()
+void WaterWindow::createToolBar()
 {
   QToolBar* toolBar = new QToolBar();
 
@@ -83,7 +83,7 @@ void QuakeWindow::createToolBar()
 }
 
 
-void QuakeWindow::createStatusBar()
+void WaterWindow::createStatusBar()
 {
   fileInfo = new QLabel("Current file: <none>");
   QStatusBar* status = statusBar();
@@ -91,7 +91,7 @@ void QuakeWindow::createStatusBar()
 }
 
 
-void QuakeWindow::addFileMenu()
+void WaterWindow::addFileMenu()
 {
   QAction* locAction = new QAction("Set Data &Location", this);
   locAction->setShortcut(QKeySequence(Qt::CTRL | Qt::Key_L));
@@ -107,7 +107,7 @@ void QuakeWindow::addFileMenu()
 }
 
 
-void QuakeWindow::addHelpMenu()
+void WaterWindow::addHelpMenu()
 {
   QAction* aboutAction = new QAction("&About", this);
   connect(aboutAction, SIGNAL(triggered()), this, SLOT(about()));
@@ -121,7 +121,7 @@ void QuakeWindow::addHelpMenu()
 }
 
 
-void QuakeWindow::setDataLocation()
+void WaterWindow::setDataLocation()
 {
   QString directory = QFileDialog::getExistingDirectory(
     this, "Data Location", ".",
@@ -133,7 +133,7 @@ void QuakeWindow::setDataLocation()
 }
 
 
-void QuakeWindow::openCSV()
+void WaterWindow::openCSV()
 {
   if (dataLocation == "") {
     QMessageBox::critical(this, "Data Location Error",
@@ -165,7 +165,7 @@ void QuakeWindow::openCSV()
 }
 
 
-void QuakeWindow::displayStats()
+void WaterWindow::displayStats()
 {
   if (model.hasData()) {
     if (statsDialog == nullptr) {
@@ -181,7 +181,7 @@ void QuakeWindow::displayStats()
 }
 
 
-void QuakeWindow::about()
+void WaterWindow::about()
 {
   QMessageBox::about(this, "About Quake Tool",
     "Quake Tool displays and analyzes earthquake data loaded from"
